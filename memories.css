@@ -1,0 +1,21 @@
+#collection, #info, button {
+    font-size: x-large;
+}
+
+#info {
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+body, #buttons {
+    display: flex;
+}
+
+#image {
+    cursor: pointer;
+}
