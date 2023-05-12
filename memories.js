@@ -35,6 +35,7 @@ function init() {
         if (!document.fullscreenElement) { // full screen exit
             var $full = getFullScreenElem();
             $full.removeAttr("src"); // stop showing full screen image
+            stopShow();
             showImage();
         }
     });
@@ -143,11 +144,6 @@ function previous() {
 }
 
 function next() {
-    if (!document.fullscreenElement && intervalId) {
-        stopShow();
-        return;
-    }
-
     index = index < (images.length - 1) ? ++index : 0;
     showImage();
 }
