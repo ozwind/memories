@@ -1,23 +1,23 @@
 var scenic = [
     {
         image: "https://photos.smugmug.com/Vacation/Taiwan-2022/i-bQvpMtn/0/2155784a/X3/IMG_2595-X3.jpg",
-        info: "Taipei, Taiwan 2/28 Peace Park 二二八和平公園, November 2023"
+        info: "Taipei, Taiwan 2/28 Peace Park 二二八和平公園, November 2022"
     },
     {
         image: "https://photos.smugmug.com/Vacation/Taiwan-2022/i-GQFKch4/0/9829ab0d/X3/IMG_2608a-X3.jpg",
-        info: "Taipei, Taiwan Chiang Kai-shek Memorial Hall, November 2023"
+        info: "Taipei, Taiwan Chiang Kai-shek Memorial Hall, November 2022"
     },
     {
         image: "https://photos.smugmug.com/Vacation/Taiwan-2022/i-pdZzfNz/0/bc53c76d/X4/IMG_2881-X4.jpg",
-        info: "Sanxiantai Arch Bridge 三仙台跨海步橋, Taiwan, November 2023"
+        info: "Sanxiantai Arch Bridge 三仙台跨海步橋, Taiwan, November 2022"
     },
     {
         image: "https://photos.smugmug.com/Vacation/Taiwan-2022/i-gqvbd29/0/3374f618/X3/IMG_2753-X3.jpg",
-        info: "Kaohsiung City, Taiwan Lotus Pond 蓮池潭, November 2023"
+        info: "Kaohsiung City, Taiwan Lotus Pond 蓮池潭, November 2022"
     },
     {
         image: "https://photos.smugmug.com/Vacation/Taiwan-2022/i-jtRM93b/0/a44e6903/X4/IMG_2962-X4.jpg",
-        info: "Keelung Zhongzheng Park 基隆中正公園, November 2023"
+        info: "Keelung Zhongzheng Park 基隆中正公園, November 2022"
     },
     {
         image: "https://photos.smugmug.com/Vacation/Switzerland-2022/i-FsNKRvs/0/a4b8c038/X4/IMG_3003-X4.jpg",
