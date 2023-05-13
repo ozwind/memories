@@ -12,34 +12,41 @@
     <script src="memories.js"></script>
     <script>
         $(function() {
-           init();
+            init();
         });
 
     </script>
 </head>
 
 <body>
-    <div id="leftSide">
-        <div>
-            <select id="collection">
+    <div id="main">
+        <div id="leftSide">
+            <div>
+                <select id="collection">
                 <option value="family">Family</option>
                 <option value="scenic">Scenic</option>
             </select>
+            </div>
+            <div id="buttons">
+                <button id="startShow" title="Start slideshow">&#x25B6;</button>
+                <button id="full" title="Full Screen, use arrow keys <- and -> for previous and next">&#x290A;</button>
+                <button id="randomize" title="Randomize the photo order">&#x29D7;</button>
+                <button id="reload" title="Reload the page. The F5 key works too.">&#10227;</button>
+                <button id="previous" title="Previous image shown. Left arrow key works too.">&lt</button>
+                <button id="next" title="Next image shown. Right arrow key works too.">&gt</button>
+            </div>
+            <div id="cbContainer">
+                <input type="checkbox" id="cbThumbs">
+                <label for="cbThumbs">Show thumbnails</label>
+            </div>
         </div>
-        <div id="buttons">
-            <button id="startShow" title="Start slideshow">&#x25B6;</button>
-            <button id="full" title="Full Screen, use arrow keys <- and -> for previous and next">&#x290A;</button>
-            <button id="randomize" title="Randomize the photo order">&#x29D7;</button>
-            <button id="reload" title="Reload the page. The F5 key works too.">&#10227;</button>
-            <button id="previous" title="Previous image shown. Left arrow key works too.">&lt</button>
-            <button id="next" title="Next image shown. Right arrow key works too.">&gt</button>
+        <div id="rightSide">
+            <img id="image">
+            <p id="info"></p>
         </div>
     </div>
-    <div id="rightSide">
-        <img id="image">
-        <p id="info"></p>
+    <div id='thumbs'>
     </div>
-
     <img id="fullScreen">
 </body>
 

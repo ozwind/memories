@@ -1,4 +1,4 @@
-#collection, #info, button {
+#collection, #info, button, label {
     font-size: x-large;
 }
 
@@ -12,10 +12,33 @@ button {
     cursor: pointer;
 }
 
-body, #buttons {
+#main, #buttons {
     display: flex;
 }
 
 #image {
     cursor: pointer;
+}
+
+#main, #thumbs {
+    overflow: hidden;    
+}
+
+.thumb {
+    height: 100px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+.row {
+    display: flex;
+}
+
+#cbThumbs {
+    transform: scale(1.5);
+}
+
+#cbContainer {
+        margin-top: 5px;
 }
