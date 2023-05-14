@@ -223,7 +223,7 @@ function showThumbs() {
             rowWidth = width;
         }
         var $thumb = $("<img class='thumb'>");
-        loadThumb($thumb, images[i].image);
+        loadThumb($thumb, images[i]);
         $row.append($thumb);
         hasElems = true;
     }
@@ -233,9 +233,10 @@ function showThumbs() {
     }
 }
 
-function loadThumb($thumb, image) {
+function loadThumb($thumb, img) {
     setTimeout(function() {
-        $thumb.attr("src", image);
+        $thumb.attr("src", img.image);
+        $thumb.attr('title', img.info);
         $thumb.on('click', function (evt) {
             index = Number(map.get(this.src));
             $('html, body').animate({ scrollTop: 0 }, 'slow');
