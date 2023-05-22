@@ -222,6 +222,18 @@ function showImage() {
             showCaptionText();
         });
     }
+
+    selectThumb(true);
+}
+
+function selectThumb(select) {
+    const $thumb = $($('#thumbs img')[index]);
+    if (select) {
+        $thumb.addClass('selected');
+    }
+    else {
+        $thumb.removeClass('selected');
+    }
 }
 
 function showPlayer() {
@@ -244,11 +256,13 @@ function showCaptionText() {
 }
 
 function previous() {
+    selectThumb(false);
     index = index > 0 ? --index : images.length - 1;
     showImage();
 }
 
 function next() {
+    selectThumb(false);
     index = index < (images.length - 1) ? ++index : 0;
     showImage();
 }
@@ -301,10 +315,13 @@ function showThumbs() {
         $thumb.attr("src", images[i].image);
         $thumb.attr('title', images[i].info);
         $thumb.on('click', function (evt) {
+            selectThumb(false);
             index = Number(map.get($(evt.target).attr('src')));
             $('html, body').animate({ scrollTop: 0 }, 'slow');
             showImage();
         });
         $thumbs.append($thumb);
     }
+
+    selectThumb(true);
 }

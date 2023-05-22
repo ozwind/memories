@@ -26,9 +26,12 @@ button {
 
 .thumb {
     height: 100px;
-    padding-right: 5px;
-    padding-bottom: 5px;
     cursor: pointer;
+    border: 2px solid white;
+}
+
+.selected {
+    border: 2px solid blue;
 }
 
 #thumbs {
