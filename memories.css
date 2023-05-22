@@ -31,8 +31,9 @@ button {
     cursor: pointer;
 }
 
-.row {
+#thumbs {
     display: flex;
+    flex-wrap: wrap;    
 }
 
 /* ---- Slider checkbox styling ---- */

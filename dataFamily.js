@@ -1,7 +1,7 @@
 var family = [
     {
         image: "https://photos.smugmug.com/Family/HLH-8mm-film/i-fTMBSFk/0/2c6b1803/O/194999_hhPlane.jpg",
-        info: "Harry Leslie Hewitt (HLH), on the left, with his plane and friend"
+        info: "Harry Leslie Hewitt (HLH), on the left, with his plane and friend. The Stinson 10A plane was built in 1940, and currently owned by someone in Dallas, Texas, according to faa.gov."
     },
     {
         image: "https://photos.smugmug.com/Family/HLH-8mm-film/i-PcmrjkC/0/5c5470ee/O/194999_Sam_WWII.jpg",

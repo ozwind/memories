@@ -1,10 +1,13 @@
 let index = 0;
 var images;
 var intervalId;
+var $video;
 const mcStore = 'memoriesCollection';
 var map;
 
 function init() {
+    $video = $('#video');
+
     $("#startShow").on("click", startShow);
     $("#full").on("click", full);
     $("#randomize").on("click", randomize);
@@ -13,22 +16,17 @@ function init() {
     $("#reload").on("click", reload);
     $(window).resize(resize);
 
+
     $('#cbThumbs').change(function () {
         showThumbs();
     });
 
-    $collection = $('#collection');
+    var $collection = $('#collection');
     let memCol = localStorage.getItem(mcStore);
-    if ('family' === memCol) {
-        images = family;
-    } else if ('scenic' === memCol) {
-        images = scenic;
-    } else {
-        images = family;
-        memCol = 'family';
-    }
+    memCol = setImages(memCol);
 
-    $('#collection').val(memCol);
+    $collection.val(memCol);
+    setTooltip($collection);
 
     $('#image').on('click', function () {
         full();
@@ -55,19 +53,15 @@ function init() {
         }
     });
 
-    $('#collection').change(function (event) {
+    $collection.change(function (event) {
         var val = event.target.value;
-        if (val === 'scenic') {
-            images = scenic;
-        } else if (val === 'family') {
-            images = family;
-        }
+        setImages(val);
+        setTooltip($collection);
         localStorage.setItem(mcStore, val);
         index = 0;
-        $("#cbThumbs").prop('checked', false);
         $("#thumbs").empty();
-        preload();
         showImage();
+        preload();
     });
 
     // stop the slideshow interval when a key is pressed
@@ -75,21 +69,42 @@ function init() {
         stopShow();
     });
 
-    preload();
     showImage();
+    preload();
+}
+
+function setImages(col) {
+    if ('family' === col) {
+        images = family;
+    } else if ('scenic' === col) {
+        images = scenic;
+    } else if ('legacy' === col) {
+        images = legacy;
+    } else if ('camcorder' === col) {
+        images = camcorder;
+    } else {
+        images = family;
+        col = 'family';
+    }
+    return col;
+}
+
+function setTooltip($collection) {
+    var val = $collection.val();
+    var query = "option[value='" + val + "']";
+    var tooltip = $collection.find(query)[0].title;
+    $collection[0].title = tooltip;
 }
 
 function preload() {
     map = new Map();
 
-    for (var idx in images) {
-        map.set(images[idx].image, idx);
-        $('<img>').attr('src', images[idx].image).on('load', function (evt) {
-            var idxImg = map.get(this.src);
-            images[idxImg].width = evt.target.width;
-            images[idxImg].height = evt.target.height;
-        });
-    }
+    setTimeout(function() {
+        showThumbs();
+        for (var idx in images) {
+            map.set(images[idx].image, idx);
+        }
+    }, 30);
 }
 
 function reload() {
@@ -97,6 +112,7 @@ function reload() {
 }
 
 function resize() {
+    calcVideo();
     setImageSize();
     showThumbs();
 }
@@ -141,6 +157,44 @@ function setImageSize() {
     }
 }
 
+// Calculate video size
+function calcVideo() {
+    const $iframe = $('#video iframe');
+    const winWidth = $(window).width();
+    const winHeight = $(window).height();
+    const lsWidth = $('#leftSide').width();
+    const rsWidth = winWidth - lsWidth;
+
+    if (images[index].smugmug) {
+        const txt = images[index].smugmug;
+        const idxWidth = txt.indexOf('?width');
+        const parms = new URLSearchParams(txt.substr(idxWidth));
+        const urlWidth = Number(parms.get('width'));
+        const urlHeight = Number(parms.get('height'));
+        const scale = rsWidth < urlWidth ? rsWidth / urlWidth : 1;
+        const width = Math.floor(urlWidth * scale);
+        const height = Math.floor(urlHeight * scale);
+        parms.set('width', width);
+        parms.set('height', height);
+        const url = "https://api.smugmug.com/services/embed/"
+            + txt.substr(0, idxWidth) + "?" + parms.toLocaleString();
+        const src = $iframe.attr('src');
+        $iframe.attr('src', url);
+        $iframe.width(width);
+        $iframe.height(height);
+
+        return {width,height,url};
+    }
+    else if (images[index].youtube) {
+        const width = rsWidth;
+        const height = rsWidth * 9 / 16;
+        const url = "https://www.youtube.com/embed/" + images[index].youtube + "?autoplay=1&rel=0";
+        $iframe.width(width);
+        $iframe.height(height);
+        return {width,height,url};
+    }
+}
+
 function showImage() {
     var $full = getFullScreenElem();
     var elem = $full.attr('src') ? $full : $("#image");
@@ -149,10 +203,44 @@ function showImage() {
     document.title = $("#collection option:selected").text();
 
     $("#info").text("");
-    elem.attr("src", images[index].image).on('load', function (evt) {
-        setImageSize();
-        $("#info").text((index + 1) + "/" + images.length + ") " + images[index].info);
+    $video.empty();
+
+    if (!document.fullscreenElement && images[index].smugmug) {
+        elem.hide();
+        showCaptionText();
+        showPlayer();
+    }
+    else if (!document.fullscreenElement && images[index].youtube) {
+        elem.hide();
+        showCaptionText();
+        showPlayer();
+    }
+    else {
+        elem.show();
+        elem.attr("src", images[index].image).on('load', function (evt) {
+            setImageSize();
+            showCaptionText();
+        });
+    }
+}
+
+function showPlayer() {
+    const video = calcVideo();
+
+    var player = $('<iframe>', {
+        'src': video.url,
+        'width': video.width,
+        'height': video.height,
+        'frameborder': '0',
+        'allowfullscreen': 'true',
+        'scrolling': 'no'
     });
+
+    $video.append(player);
+}
+
+function showCaptionText() {
+    $("#info").text((index + 1) + "/" + images.length + ") " + images[index].info);
 }
 
 function previous() {
@@ -201,12 +289,7 @@ function randomize() {
 }
 
 function showThumbs() {
-    var $thumbs = $("#thumbs");
-    var $row = $('<div class="row"></div>');
-    var hasElems = false;
-    var rowWidth = 0;
-    var winWidth = $(window).width();
-
+    const $thumbs = $("#thumbs");
     $thumbs.empty();
 
     if (!$("#cbThumbs").is(':checked')) {
@@ -214,33 +297,14 @@ function showThumbs() {
     }
 
     for (var i = 0; i < images.length; i++) {
-        var width = 5 + Math.round(images[i].width * 100 / images[i].height);
-        rowWidth += width;
-        if (rowWidth > winWidth) {
-            $thumbs.append($row);
-            $row = $('<div class="row"></div>');
-            hasElems = false;
-            rowWidth = width;
-        }
         var $thumb = $("<img class='thumb'>");
-        loadThumb($thumb, images[i]);
-        $row.append($thumb);
-        hasElems = true;
-    }
-
-    if (hasElems) {
-        $thumbs.append($row);
-    }
-}
-
-function loadThumb($thumb, img) {
-    setTimeout(function() {
-        $thumb.attr("src", img.image);
-        $thumb.attr('title', img.info);
+        $thumb.attr("src", images[i].image);
+        $thumb.attr('title', images[i].info);
         $thumb.on('click', function (evt) {
-            index = Number(map.get(this.src));
+            index = Number(map.get($(evt.target).attr('src')));
             $('html, body').animate({ scrollTop: 0 }, 'slow');
             showImage();
         });
-    }, 20);
+        $thumbs.append($thumb);
+    }
 }

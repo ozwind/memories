@@ -2,13 +2,16 @@
 <html>
 
 <head>
-    <title>Memories</title>
     <!-- https://www.favicon.cc/ -->
+    <meta charset="utf-8">
+    <title>Memories</title>
     <link rel="shortcut icon" type="image/x-icon" href="icons/favicon.ico">
     <link rel="stylesheet" href="memories.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="dataFamily.js"></script>
-    <script src="dataScenic.js"></script>
+    <script src="dataFamily.js" charset="utf-8"></script>
+    <script src="dataScenic.js" charset="utf-8"></script>
+    <script src="dataLegacy.js" charset="utf-8"></script>
+    <script src="dataCamCorder.js" charset="utf-8"></script>
     <script src="memories.js"></script>
     <script>
         $(function() {
@@ -21,10 +24,12 @@
 <body>
     <div id="main">
         <div id="leftSide">
-            <div title="Choose image collection">
+            <div>
                 <select id="collection">
-                <option value="family">Family</option>
-                <option value="scenic">Scenic</option>
+                <option value="family" title="Hewitt family and friends since the 1940's">Family</option>
+                <option value="legacy" title="Legacy family videos">Legacy videos</option>
+                <option value="camcorder" title="Camcorder taken videos">Camcorder videos</option>
+                <option value="scenic" title="Scenic images taken during our travels">Scenic</option>
             </select>
             </div>
             <div id="buttons">
@@ -37,19 +42,21 @@
             </div>
             <div id="toggle">
                 <label class="switch" title="Show/hide clickable image thumbnails">
-                    <input type="checkbox" id="cbThumbs">
+                    <input type="checkbox" id="cbThumbs" checked>
                     <span class="slider round"></span>
                 </label>
                 <div id="toggleText">Thumbnails</div>
             </div>
         </div>
         <div id="rightSide">
-            <img id="image">
+            <div>
+                <img id="image">
+                <div id="video"></div>
+            </div>
             <p id="info"></p>
         </div>
     </div>
-    <div id='thumbs'>
-    </div>
+    <div id='thumbs'></div>
     <img id="fullScreen">
 </body>
 
