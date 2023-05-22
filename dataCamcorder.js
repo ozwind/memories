@@ -1,4 +1,4 @@
-var camcorder = [
+var camcorder = [   //
     {
         image: "https://photos.smugmug.com/Family/HLH-8mm-film/i-qfWjfqz/0/3c7cd3a9/O/tn19880717%20-%20Townhouse%20construction.png",
         smugmug: "13443246841_dpmGkkp?width=640&height=480&albumId=44913613&albumKey=tj6DKF",
