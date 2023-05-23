@@ -69,6 +69,12 @@ function init() {
         stopShow();
     });
 
+    $('#info').click(function() {
+        if (images[index].site) {
+            window.open(images[index].site, '_blank');
+        }
+    });
+
     showImage();
     preload();
 }
@@ -252,7 +258,14 @@ function showPlayer() {
 }
 
 function showCaptionText() {
-    $("#info").text((index + 1) + "/" + images.length + ") " + images[index].info);
+    const $info = $("#info");
+    $info.text((index + 1) + "/" + images.length + ") " + images[index].info);
+    if (images[index].site) {
+        $info.addClass("clickable");
+    }
+    else {
+        $info.removeClass("clickable");
+    }
 }
 
 function previous() {
