@@ -254,7 +254,7 @@ var legacy = [
     {
         image: "https://photos.smugmug.com/Family/HLH-8mm-film/i-pzsQ2QG/0/4f039e9e/O/tnRickLarryMovie.png",
         youtube: "SzfidFKgUHE",
-        info: "Larry and Rick the Movie in the 1980's. Conor (Rick's son) took the raw digitized footage and edited it together for the movie. There was of course no sound. The music, added by Rick, and is from Brian Eno. (23:16)"
+        info: "Larry and Rick the Movie in the 1980's. Conor (Rick's son) took the raw digitized footage and edited it together for the movie. The 8mm camera used to make the film does not record sound. The music that is heard in the video was added by Rick, and is from musician Brian Eno. In 2023 there are rumors of a sequel being made. (23:16)"
     },
     {
         image: "https://photos.smugmug.com/Family/HLH-8mm-film/i-pK2S4h3/0/e647d3ff/O/tn2008%20New%20Zealand%20bird%20sounds.jpg",
