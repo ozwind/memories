@@ -252,6 +252,11 @@ var legacy = [
         info: "In 1968 we decided to have this silly video, because we wondered whether the film was any good. (3:30)"
     },
     {
+        image: "https://photos.smugmug.com/Family/HLH-8mm-film/i-pzsQ2QG/0/4f039e9e/O/tnRickLarryMovie.png",
+        youtube: "SzfidFKgUHE",
+        info: "Larry and Rick the Movie in the 1980's. Conor (Rick's son) took the raw digitized footage and edited it together for the movie. There was of course no sound. The music, added by Rick, and is from Brian Eno. (23:16)"
+    },
+    {
         image: "https://photos.smugmug.com/Family/HLH-8mm-film/i-pK2S4h3/0/e647d3ff/O/tn2008%20New%20Zealand%20bird%20sounds.jpg",
         youtube: "6PArxMtcXWY",
         info: "New Zealand bird sounds on a walk Cliff took in 2008 at a place called Monro Beach (0:21)"
