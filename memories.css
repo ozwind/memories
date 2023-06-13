@@ -34,18 +34,13 @@ button {
     border: 2px solid blue;
 }
 
-.clickable {
-    cursor: pointer;
-}
-
 #thumbs {
     display: flex;
     flex-wrap: wrap;    
 }
 
 a {
-    text-decoration: underline;
-    text-decoration-skip-ink: none;
+    text-decoration: none;
 }
 
 /* ---- Slider checkbox styling ---- */
