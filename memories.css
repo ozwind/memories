@@ -43,6 +43,11 @@ button {
     flex-wrap: wrap;    
 }
 
+a {
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+}
+
 /* ---- Slider checkbox styling ---- */
 #toggle {
     display: flex;
