@@ -69,12 +69,6 @@ function init() {
         stopShow();
     });
 
-    $('#info').click(function() {
-        if (images[index].site) {
-            window.open(images[index].site, '_blank');
-        }
-    });
-
     showImage();
     preload();
 }
@@ -202,13 +196,15 @@ function calcVideo() {
 }
 
 function showImage() {
+    const $info = $("#info");
     var $full = getFullScreenElem();
     var elem = $full.attr('src') ? $full : $("#image");
 
     $("*").blur(); // remove keyboard focus
     document.title = $("#collection option:selected").text();
 
-    $("#info").text("");
+    $info.text("");
+    $info.empty();
     $video.empty();
 
     if (!document.fullscreenElement && images[index].smugmug) {
@@ -259,12 +255,14 @@ function showPlayer() {
 
 function showCaptionText() {
     const $info = $("#info");
-    $info.text((index + 1) + "/" + images.length + ") " + images[index].info);
+    const txt = (index + 1) + "/" + images.length + ") " + images[index].info;
+
     if (images[index].site) {
-        $info.addClass("clickable");
+        const $anchor = $('<a href="' + images[index].site + '" target="_blank">' + txt + '</a>');
+        $info.append($anchor);
     }
     else {
-        $info.removeClass("clickable");
+        $info.text(txt);
     }
 }
 
