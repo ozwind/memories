@@ -324,8 +324,8 @@ var family = [
         info: "Elsie"
     },
     {
-        image: "https://photos.smugmug.com/Family/HLH-8mm-film/i-JMgHR6L/0/92ab64ca/O/197599_GoldenBuda.jpg",
-        info: "The Golden Buddha restaurant front door. Darryl worked here first as dish washers, then Cliff, and then Larry. The salary was $2 an hour."
+        image: "https://photos.smugmug.com/Family/HLH-8mm-film/i-JMgHR6L/1/973d3929/X4/197599_GoldenBuda-X4.jpg",
+        info: "The Golden Buda restaurant. Darryl worked here first as dish washers, then Cliff, and then Larry. The salary was $2 an hour."
     },
     {
         image: "https://photos.smugmug.com/Family/HLH-8mm-film/i-p6Hq5HS/0/ba086a8f/O/197599_hh.jpg",
